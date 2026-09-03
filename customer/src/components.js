@@ -103,63 +103,209 @@ export function productCard(p, { showRemoveFromFavorites = false } = {}) {
 export function header() {
   const session = authService.getSession();
   const wishCount = customerService.getWishlist().length;
+
   return `
   <header id="site-header" class="sticky top-0 z-50 hdr-blur bg-white/80 border-b border-fc-line transition-shadow">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
       <div class="h-16 flex items-center justify-between gap-4">
-        <a href="#/" class="flex items-center gap-2 sm:gap-2.5 shrink-0 min-w-0">
-           <img src="${COMPANY.logoMark}" alt="Farm Craft" class="h-10 w-[112px] sm:h-11 sm:w-[128px] rounded-xl bg-white object-contain p-0.5 shrink-0 -translate-x-[35px]" />
-          <span class="font-display font-bold text-base sm:text-lg tracking-tight leading-none">FARM CRAFT</span>
+
+        <!-- =====================================================
+             BRAND AREA
+             Logo + FARM CRAFT are ONE brand, not navigation
+             ===================================================== -->
+        <a
+          href="#/"
+          class="flex items-center gap-2.5 sm:gap-3 shrink-0 min-w-0"
+          aria-label="Farm Craft Home"
+        >
+          <img
+            src="${COMPANY.logoMark}"
+            alt="Farm Craft Logo"
+            class="h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-white object-contain p-0.5 shrink-0"
+          />
+
+          <span
+            class="font-display font-bold text-base sm:text-lg tracking-tight leading-none whitespace-nowrap"
+          >
+            FARM CRAFT
+          </span>
         </a>
 
+        <!-- =====================================================
+             MAIN NAVIGATION
+             FARM CRAFT is NOT part of this navigation
+             ===================================================== -->
         <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-fc-slate">
-          <a href="#/" class="hover:text-fc-green transition-colors">Home</a>
-          <a href="#/shop" class="hover:text-fc-green transition-colors">Products</a>
-          <a href="#/about" class="hover:text-fc-green transition-colors">About Us</a>
-          <a href="#/services" class="hover:text-fc-green transition-colors">Services</a>
-          <a href="#/contact" class="hover:text-fc-green transition-colors">Contact</a>
+          <a href="#/" class="hover:text-fc-green transition-colors">
+            Home
+          </a>
+
+          <a href="#/shop" class="hover:text-fc-green transition-colors">
+            Products
+          </a>
+
+          <a href="#/about" class="hover:text-fc-green transition-colors">
+            About Us
+          </a>
+
+          <a href="#/services" class="hover:text-fc-green transition-colors">
+            Services
+          </a>
+
+          <a href="#/contact" class="hover:text-fc-green transition-colors">
+            Contact
+          </a>
         </nav>
 
-        <form id="header-search" class="hidden md:flex items-center flex-1 max-w-xs bg-fc-offwhite border border-fc-line rounded-full px-3 py-2 focus-within:border-fc-green transition-colors">
-          <i data-lucide="search" class="w-4 h-4 text-fc-slate/60 shrink-0"></i>
-          <input name="q" type="search" placeholder="Search grain machinery…" class="bg-transparent outline-none text-sm px-2 w-full placeholder:text-fc-slate/50" />
+        <!-- =====================================================
+             SEARCH
+             ===================================================== -->
+        <form
+          id="header-search"
+          class="hidden md:flex items-center flex-1 max-w-xs bg-fc-offwhite border border-fc-line rounded-full px-3 py-2 focus-within:border-fc-green transition-colors"
+        >
+          <i
+            data-lucide="search"
+            class="w-4 h-4 text-fc-slate/60 shrink-0"
+          ></i>
+
+          <input
+            name="q"
+            type="search"
+            placeholder="Search grain machinery…"
+            class="bg-transparent outline-none text-sm px-2 w-full placeholder:text-fc-slate/50"
+          />
         </form>
 
+        <!-- =====================================================
+             CUSTOMER ACTIONS
+             ===================================================== -->
         <div class="flex items-center gap-1 sm:gap-2">
-          <a href="#/cart" class="relative w-10 h-10 rounded-full hover:bg-fc-greenlight flex items-center justify-center transition-colors" aria-label="Cart"><i data-lucide="shopping-cart" class="w-5 h-5"></i></a>
-          <a href="#/wishlist" class="relative w-10 h-10 rounded-full hover:bg-fc-greenlight flex items-center justify-center transition-colors" aria-label="Wishlist">
-            <i data-lucide="heart" class="w-5 h-5"></i>
-            <span id="wishlist-count-badge" class="absolute -top-0.5 -right-0.5 bg-fc-wheat text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center ${wishCount ? '' : 'hidden'}">${wishCount}</span>
+
+          <!-- Cart -->
+          <a
+            href="#/cart"
+            class="relative w-10 h-10 rounded-full hover:bg-fc-greenlight flex items-center justify-center transition-colors"
+            aria-label="Cart"
+          >
+            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
           </a>
-          <a href="#/${session ? 'profile' : 'login'}" class="hidden sm:flex w-10 h-10 rounded-full hover:bg-fc-greenlight items-center justify-center transition-colors" aria-label="Account">
+
+          <!-- Wishlist -->
+          <a
+            href="#/wishlist"
+            class="relative w-10 h-10 rounded-full hover:bg-fc-greenlight flex items-center justify-center transition-colors"
+            aria-label="Wishlist"
+          >
+            <i data-lucide="heart" class="w-5 h-5"></i>
+
+            <span
+              id="wishlist-count-badge"
+              class="absolute -top-0.5 -right-0.5 bg-fc-wheat text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center ${wishCount ? '' : 'hidden'}"
+            >
+              ${wishCount}
+            </span>
+          </a>
+
+          <!-- Account -->
+          <a
+            href="#/${session ? 'profile' : 'login'}"
+            class="hidden sm:flex w-10 h-10 rounded-full hover:bg-fc-greenlight items-center justify-center transition-colors"
+            aria-label="Account"
+          >
             <i data-lucide="user" class="w-5 h-5"></i>
           </a>
-          <a href="#/shop" class="hidden md:inline-flex ml-1 bg-fc-green text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-fc-greendark transition-colors">
+
+          <!-- Explore Products -->
+          <a
+            href="#/shop"
+            class="hidden md:inline-flex ml-1 bg-fc-green text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-fc-greendark transition-colors"
+          >
             Explore Products
           </a>
-          <button id="mobile-menu-btn" class="lg:hidden w-10 h-10 rounded-full hover:bg-fc-greenlight flex items-center justify-center" aria-label="Open menu">
+
+          <!-- Mobile Menu -->
+          <button
+            id="mobile-menu-btn"
+            class="lg:hidden w-10 h-10 rounded-full hover:bg-fc-greenlight flex items-center justify-center"
+            aria-label="Open menu"
+          >
             <i data-lucide="menu" class="w-5 h-5"></i>
           </button>
+
         </div>
       </div>
 
-      <form id="header-search-mobile" class="md:hidden pb-3 flex items-center bg-fc-offwhite border border-fc-line rounded-full px-3 py-2">
-        <i data-lucide="search" class="w-4 h-4 text-fc-slate/60 shrink-0"></i>
-        <input name="q" type="search" placeholder="Search grain machinery…" class="bg-transparent outline-none text-sm px-2 w-full placeholder:text-fc-slate/50" />
+      <!-- =====================================================
+           MOBILE SEARCH
+           ===================================================== -->
+      <form
+        id="header-search-mobile"
+        class="md:hidden pb-3 flex items-center bg-fc-offwhite border border-fc-line rounded-full px-3 py-2"
+      >
+        <i
+          data-lucide="search"
+          class="w-4 h-4 text-fc-slate/60 shrink-0"
+        ></i>
+
+        <input
+          name="q"
+          type="search"
+          placeholder="Search grain machinery…"
+          class="bg-transparent outline-none text-sm px-2 w-full placeholder:text-fc-slate/50"
+        />
       </form>
     </div>
 
-    <div id="mobile-menu" class="hidden lg:hidden border-t border-fc-line bg-white">
-      <nav class="max-w-7xl mx-auto px-4 py-3 flex flex-col text-sm font-medium text-fc-slate">
-        <a href="#/" class="py-2.5 border-b border-fc-line/70">Home</a>
-        <a href="#/shop" class="py-2.5 border-b border-fc-line/70">Products</a>
-        <a href="#/about" class="py-2.5 border-b border-fc-line/70">About Us</a>
-        <a href="#/services" class="py-2.5 border-b border-fc-line/70">Services</a>
-        <a href="#/contact" class="py-2.5 border-b border-fc-line/70">Contact</a>
-        <a href="#/wishlist" class="py-2.5 border-b border-fc-line/70">Wishlist</a>
-        <a href="#/cart" class="py-2.5 border-b border-fc-line/70">Cart</a>
-        <a href="#/${session ? 'profile' : 'login'}" class="py-2.5 border-b border-fc-line/70">${session ? 'My Profile' : 'Login'}</a>
-        <a href="#/orders" class="py-2.5">My Orders</a>
+    <!-- =======================================================
+         MOBILE MENU
+         ======================================================= -->
+    <div
+      id="mobile-menu"
+      class="hidden lg:hidden border-t border-fc-line bg-white"
+    >
+      <nav
+        class="max-w-7xl mx-auto px-4 py-3 flex flex-col text-sm font-medium text-fc-slate"
+      >
+        <a href="#/" class="py-2.5 border-b border-fc-line/70">
+          Home
+        </a>
+
+        <a href="#/shop" class="py-2.5 border-b border-fc-line/70">
+          Products
+        </a>
+
+        <a href="#/about" class="py-2.5 border-b border-fc-line/70">
+          About Us
+        </a>
+
+        <a href="#/services" class="py-2.5 border-b border-fc-line/70">
+          Services
+        </a>
+
+        <a href="#/contact" class="py-2.5 border-b border-fc-line/70">
+          Contact
+        </a>
+
+        <a href="#/wishlist" class="py-2.5 border-b border-fc-line/70">
+          Wishlist
+        </a>
+
+        <a href="#/cart" class="py-2.5 border-b border-fc-line/70">
+          Cart
+        </a>
+
+        <a
+          href="#/${session ? 'profile' : 'login'}"
+          class="py-2.5 border-b border-fc-line/70"
+        >
+          ${session ? 'My Profile' : 'Login'}
+        </a>
+
+        <a href="#/orders" class="py-2.5">
+          My Orders
+        </a>
       </nav>
     </div>
   </header>`;
