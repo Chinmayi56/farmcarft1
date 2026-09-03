@@ -99,19 +99,31 @@ class Settings(BaseSettings):
         return v
 
     @property
-    def sqlalchemy_database_url(self) -> str:
-        """Return the fully-resolved SQLAlchemy database URL.
+def sqlalchemy_database_url(self) -> str:
+    """Return the fully-resolved SQLAlchemy database URL.
 
-        Prefers DATABASE_URL if set; otherwise builds one from the
-        individual DB_* components so the app can still start without a
-        single combined URL.
-        """
-        if self.database_url:
-            return self.database_url
-        return (
-            f"postgresql+psycopg://{self.db_user}:{self.db_password}"
-            f"@{self.db_host}:{self.db_port}/{self.db_name}"
-        )
+    Always uses the Psycopg 3 SQLAlchemy driver.
+    """
+    if self.database_url:
+        url = self.database_url.strip()
+
+        # Render may provide postgresql:// or postgres://.
+        # Force SQLAlchemy to use Psycopg 3 instead of psycopg2.
+        if url.startswith("postgres://"):
+            url = "postgresql+psycopg://" + url[len("postgres://"):]
+
+        elif url.startswith("postgresql://"):
+            url = "postgresql+psycopg://" + url[len("postgresql://"):]
+
+        elif url.startswith("postgresql+psycopg2://"):
+            url = "postgresql+psycopg://" + url[len("postgresql+psycopg2://"):]
+
+        return url
+
+    return (
+        f"postgresql+psycopg://{self.db_user}:{self.db_password}"
+        f"@{self.db_host}:{self.db_port}/{self.db_name}"
+    )
 
     @property
     def cors_origins_list(self) -> List[str]:
