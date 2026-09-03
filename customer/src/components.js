@@ -108,7 +108,7 @@ export function header() {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="h-16 flex items-center justify-between gap-4">
         <a href="#/" class="flex items-center gap-2 sm:gap-2.5 shrink-0 min-w-0">
-           <img src="${COMPANY.logoMark}" alt="Farm Craft" class="h-10 w-[112px] sm:h-11 sm:w-[128px] rounded-xl bg-white object-contain p-0.5 shrink-0 -translate-x-[40px]" />
+           <img src="${COMPANY.logoMark}" alt="Farm Craft" class="h-10 w-[112px] sm:h-11 sm:w-[128px] rounded-xl bg-white object-contain p-0.5 shrink-0 -translate-x-[35px]" />
           <span class="font-display font-bold text-base sm:text-lg tracking-tight leading-none">FARM CRAFT</span>
         </a>
 

@@ -71,7 +71,7 @@ export default function Dashboard() {
     <div className="space-y-6 animate-fade-in">
       <div>
         <h2 className="font-display text-xl font-bold text-farm-charcoal-deep sm:text-2xl">
-          Good Morning, {admin?.name ?? "Admin"}
+          Hello, {admin?.name ?? "Admin"}
         </h2>
         <p className="mt-1 text-sm text-farm-charcoal/55">
           Here's what's happening with Farm Craft today.
