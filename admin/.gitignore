@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+*.local
+
+# Environment variables (never commit real secrets/API URLs meant for
+# a specific environment)
+.env
+.env.*
+!.env.example

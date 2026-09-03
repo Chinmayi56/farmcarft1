@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Farm Craft | Grain Handling Machinery</title>
+<meta name="description" content="Farm Craft — premium grain transferring, collecting and bagging machinery for farms, mills and agricultural businesses." />
+<link rel="icon" href="./assets/farmcraft-logo-full.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          fc: {
+            green: '#1E7A3D',
+            greendark: '#134A26',
+            greenlight: '#E8F3EC',
+            charcoal: '#2A2E29',
+            slate: '#3A4048',
+            wheat: '#C99A3B',
+            offwhite: '#F7F6F1',
+            paper: '#FCFBF8',
+            line: '#E4E2D9'
+          }
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          body: ['Inter', 'sans-serif']
+        },
+        boxShadow: {
+          soft: '0 8px 30px -12px rgba(20, 30, 20, 0.18)',
+          card: '0 2px 14px -4px rgba(20, 30, 20, 0.12)'
+        }
+      }
+    }
+  }
+</script>
+<link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body class="bg-fc-offwhite text-fc-charcoal font-body antialiased">
+
+<div id="toast-root" class="fixed top-4 right-4 z-[100] flex flex-col gap-2 items-end"></div>
+<!--
+  Static initial-loading skeleton, shown only until main.js's first
+  render() call replaces #app's contents. Without this the page is a
+  blank white screen while the first product fetch is in flight.
+-->
+<div id="app">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
+      <div class="bg-white rounded-2xl border border-fc-line overflow-hidden">
+        <div class="skel aspect-[4/3]"></div>
+        <div class="p-4 space-y-2">
+          <div class="skel h-3 w-20 rounded"></div>
+          <div class="skel h-4 w-3/4 rounded"></div>
+          <div class="skel h-3 w-full rounded"></div>
+          <div class="skel h-9 w-full rounded-xl mt-2"></div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border border-fc-line overflow-hidden">
+        <div class="skel aspect-[4/3]"></div>
+        <div class="p-4 space-y-2">
+          <div class="skel h-3 w-20 rounded"></div>
+          <div class="skel h-4 w-3/4 rounded"></div>
+          <div class="skel h-3 w-full rounded"></div>
+          <div class="skel h-9 w-full rounded-xl mt-2"></div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border border-fc-line overflow-hidden hidden sm:block">
+        <div class="skel aspect-[4/3]"></div>
+        <div class="p-4 space-y-2">
+          <div class="skel h-3 w-20 rounded"></div>
+          <div class="skel h-4 w-3/4 rounded"></div>
+          <div class="skel h-3 w-full rounded"></div>
+          <div class="skel h-9 w-full rounded-xl mt-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
